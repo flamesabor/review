@@ -1,29 +1,54 @@
 <%include ../views/partials/header %>
-<div class ="row">
+
+<div class="add-container">
+    <style>
+    .add-container{
+        width: 75%;
+    }
+    </style>
+<div style="background-color: rgba(255,255,255,0.8); padding: 30px; border-radius: 50px" class="row">
+
     <!-- Splitting the page to left and right half -->
-    <div class="col-md-6">
+    <div class="col s12">
 <!-- --------Form Code starts between these lines-------- -->
 
 <form method="post" action="/todo/add">
     <div class="form-group">
-        <label>Topic</label>
-            <input class="form-control" type="text" name="text" placeholder="Add Todo">
+        <label>About</label>
+            <input class="form-control" type="text" name="text">
     </div>
     <div class="form-group">
+            <label for="sel1">Category:</label>
+            <select class="form-control" type="text" name="textcat">
+              <option>Cool Gadgets</option>
+              <option>Movies</option>
+              <option>Yummy stuff</option>
+              <option>Something with tyres</option>
+              <option>None of these</option>
+            </select>
+          </div>
+          
+    <div class="form-group">
         <label>Did you like it??</label>
-            <textarea class="form-control" name="body" placeholder="Add Body"></textarea> 
+            <textarea class="form-control" name="body" placeholder="Go ahead....say how you feel"></textarea> 
     </div>
+    <div class="form-group" action="#">
+        <p class="range-field">
+            <input type="range" id="test5" min="1" max="5" />
+          </p>
+      </form>
     <br>
     <button class="waves-effect waves-light btn #42a5f5 blue lighten-1" type="submit">Submit</button>
     <a class="btn btn-outline-danger" href="/">Cancel</a>
+    <br>
+    <br>
     </form> 
 <!-- --------Form Code ends between these lines-------- -->
 
     </div>
 
 </div>
-
-
+</div>
 
 
 <%include ../views/partials/footer %>

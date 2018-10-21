@@ -10,6 +10,11 @@ const app=express();
 
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+
+//Local testing DB
+//const url = 'mongodb://localhost:27017/todoapp';
+
+//Online mlab link
 const url = 'mongodb://admin:admin-123@ds233323.mlab.com:33323/reviewbase';
 
 
@@ -39,9 +44,9 @@ app.listen(port, ()=>{
 
 });
 
-
+//Display all content on Index page
 app.get('/', (req, res, next)=>{
-    Todos.find({}).toArray((err, todos)=>{
+    Todos.find().toArray((err, todos)=>{
         if(err){
             return console.log(err);
         }
@@ -52,11 +57,25 @@ app.get('/', (req, res, next)=>{
     });
 });
 
+//Display specific content on Index page
+// app.get('/', (req, res, next)=>{
+//     var main_query = {text: "Two Countries"};
+//     Todos.find(main_query).toArray((err, todos)=>{
+//         if(err){
+//             return console.log(err);
+//         }
+        
+//         res.render('index', {
+//             todos: todos
+//         });
+//     });
+// });
 
 app.post('/todo/add', (req, res, next)=>{
 //Create todo
 const todo = {
     text: req.body.text,
+    textcat: req.body.textcat,
     body: req.body.body
 }
 
@@ -101,6 +120,7 @@ app.post('/todo/edit/:id', (req, res, next)=>{
     //Create todo
     const todo = {
         text: req.body.text,
+        textcat: req.body.textcat,
         body: req.body.body
     }
     
@@ -128,3 +148,23 @@ app.post('/todo/edit/:id', (req, res, next)=>{
             });
         });
     });
+
+    //Search nav
+
+     app.get('/search', (req, res, next)=>{
+            var myText = req.query.svalue;
+                var main_query = {text: myText};
+                Todos.find(main_query).toArray((err, todos)=>{
+                    if(err){
+                        return console.log(err);
+                    }
+                    
+                    res.render('index', {
+                        todos: todos
+                    });
+                });
+            });
+     
+            //Materialize NoUislider
+            
+            

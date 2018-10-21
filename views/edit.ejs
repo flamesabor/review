@@ -1,7 +1,14 @@
-<%include ../views/partials/header %>
+<%include ../views/partials/editheader %>
+<style>
+        #grad1 {
+            height: 600px;
+            background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(206, 215, 224)); /* Standard syntax (must be last) */
+        }
+        </style>
+        <div class="edit-container">
 <div class ="row">
         <!-- Splitting the page to left and right half -->
-        <div class="col-md-6">
+        <div class="col-md-10">
     <!-- --------Form Code starts between these lines-------- -->
 
     <form method="post" action="/todo/edit/<%= todo._id %>">
@@ -10,6 +17,15 @@
                 <input class="form-control" type="text" name="text" placeholder="Add Topic" value= "<%= todo.text %>">
         </div>
         <div class="form-group">
+                <label for="sel1">Select list:</label>
+                <select class="form-control" type="text" name="textcat">
+                  <option>Gadgets</option>
+                  <option>Movie</option>
+                  <option>Food</option>
+                  <option>Others</option>
+                </select>
+              </div>
+        <div class="form-group">
             <label>Having second thoughts??</label>
                 <textarea class="form-control" name="body" placeholder="Write your review..."><%= todo.body %></textarea> 
         </div>
@@ -17,9 +33,10 @@
         <button class="waves-effect waves-light btn #42a5f5 blue lighten-1" type="submit">Submit</button>
         <a class="btn btn-outline-danger" href="/">Cancel</a>
         </form>
-
-
     <!-- --------Form Code ends between these lines-------- -->
     </div>
+</div>
 
-<%include ../views/partials/footer %>
+    <%include ../views/partials/footer %>
+
+    
